@@ -1,1 +1,1 @@
-mvn package assembly:single
+mvn install
