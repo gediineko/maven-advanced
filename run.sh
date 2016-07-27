@@ -1,2 +1,2 @@
 echo "Running..."
-java -jar target/maven-advanced-jar-with-dependencies.jar com.test.advanced.App
+java -jar target/maven-advanced-1.0-SNAPSHOT-jar-with-dependencies.jar com.test.advanced.App
