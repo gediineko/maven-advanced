@@ -13,19 +13,12 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.ver>1.8</java.ver>
     <commons.lang.ver>3.4</commons.lang.ver>
-    <junit.ver>3.8.1</junit.ver>
     <mvn.compiler.plugin.ver>3.5.1</mvn.compiler.plugin.ver>
     <mvn.assembly.plugin.ver>2.6</mvn.assembly.plugin.ver>
   </properties>
   <!--DEPENDENCY MANAGEMENT-->
   <dependencyManagement>
     <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.ver}</version>
-      <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
@@ -35,10 +28,6 @@
   </dependencyManagement>
   <!--DEPENDENCIES-->
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
@@ -71,6 +60,8 @@
             <descriptorRefs>
               <descriptorRef>jar-with-dependencies</descriptorRef>
             </descriptorRefs>
+            <finalName>maven-advanced</finalName>
+            <appendAssemblyId>false</appendAssemblyId>
             <archive>
               <manifest>
                 <addClasspath>true</addClasspath>
