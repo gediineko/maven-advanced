@@ -1,27 +1,20 @@
 package com.exist.advanced.util;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.lang.Exception;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.LinkedHashMap;
+import java.util.*;
 import java.lang.StringBuffer;
 public class FileUtil{
-	private static final String DIR_NAME = "src/main/resources";
 	private static final String FILE_NAME = "table";
 	public static final String ENTRY_DELIMITER = " \u037E "; //greek question mark
 	public static final String KEY_VALUE_DELIMITER = " \u2261 "; //triple bar
+	private static final String CONFIG = "config.properties" ;
+
 	public static List<Map<String,String>> readFile(){
 		List<Map<String,String>> table = new LinkedList<Map<String,String>>();
-		Path file = FileSystems.getDefault().getPath(DIR_NAME, FILE_NAME);
+		Path file = FileSystems.getDefault().getPath(getFilePath(), FILE_NAME);
 		try (InputStream in = Files.newInputStream(file); 
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in))){
 			String line = null;
@@ -41,7 +34,7 @@ public class FileUtil{
 	}
 	public static void writeFile(List<Map<String,String>> table){
 		try {
-			File file = new File(DIR_NAME+File.separator+FILE_NAME);
+			File file = new File(getFilePath()+File.separator+FILE_NAME);
 			if (file.exists()){
 				file.delete();
 			}
@@ -60,6 +53,16 @@ public class FileUtil{
 		} catch (Exception ex) {
 			System.out.println("Error writing file!");
 		}
+	}
+	private static String getFilePath(){
+		Properties prop = new Properties();
+		try (InputStream in = ClassLoader.getSystemResourceAsStream(CONFIG)){
+			prop.load(in);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(prop.getProperty("file.path"));
+		return prop.getProperty("file.path");
 	}
 
 }

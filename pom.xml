@@ -15,7 +15,26 @@
     <commons.lang.ver>3.4</commons.lang.ver>
     <mvn.compiler.plugin.ver>3.5.1</mvn.compiler.plugin.ver>
     <mvn.assembly.plugin.ver>2.6</mvn.assembly.plugin.ver>
+    <mvn.resources.plugin.ver>3.0.1</mvn.resources.plugin.ver>
   </properties>
+  <!-- BUILD PROFILE -->
+  <profiles>
+    <profile>
+      <id>current</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <file.path>.</file.path>
+      </properties>
+    </profile>
+    <profile>
+      <id>desktop</id>
+      <properties>
+        <file.path>${user.home}/Desktop</file.path>
+      </properties>
+    </profile>
+  </profiles>
   <!--DEPENDENCY MANAGEMENT-->
   <dependencyManagement>
     <dependencies>
@@ -79,6 +98,11 @@
             </execution>
           </executions>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${mvn.resources.plugin.ver}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <!--PLUG-INS-->
@@ -89,6 +113,10 @@
       </plugin>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
