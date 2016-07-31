@@ -61,7 +61,6 @@ public class FileUtil{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(prop.getProperty("file.path"));
 		return prop.getProperty("file.path");
 	}
 
